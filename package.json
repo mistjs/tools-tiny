@@ -1,18 +1,19 @@
 {
   "name": "lodash-mini",
   "version": "0.0.0",
+  "packageManager": "pnpm@7.4.0",
   "description": "",
+  "keywords": [
+    "lodash",
+    "lodash-mini"
+  ],
+  "license": "MIT",
+  "author": "aibayanyu",
   "main": "index.js",
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release": "bumpp"
   },
-  "keywords": [
-    "lodash",
-    "lodash-mini"
-  ],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@mistjs/eslint-config": "^0.0.2",
     "@types/node": "^18.0.0",
