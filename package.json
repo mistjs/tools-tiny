@@ -1,6 +1,6 @@
 {
   "name": "tiny-tool",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "packageManager": "pnpm@7.4.0",
   "description": "Tiny Tool is a tool library that helps us develop quickly",
   "keywords": [
