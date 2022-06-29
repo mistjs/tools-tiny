@@ -1,3 +1,3 @@
-# Tiny Tool
+# Tools Tiny
 
-Tiny Tool is a tool library that helps us develop quickly.
+Tools Tiny is a tool library that helps us develop quickly.
