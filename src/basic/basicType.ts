@@ -11,10 +11,10 @@ export const isNumeric = (val: unknown): val is number => isNumber(val) && !isNa
 export const isBool = (val: unknown): val is boolean => typeof val === 'boolean'
 
 // check is Object
-export const isObject = <T extends object>(val: unknown): val is T => Object.prototype.toString.call(val) === '[Object Object]'
+export const isObject = <T>(val: T): val is T => Object.prototype.toString.call(val) === '[object Object]'
 
 // check is Array
-export const isArray = <T extends unknown[]>(val: unknown): val is T => Array.isArray(val) && Object.prototype.toString.call(val) === '[Object Array]'
+export const isArray = (val: any): val is any[] => Array.isArray(val) && Object.prototype.toString.call(val) === '[object Array]'
 
 // check is basic Symbol
 export const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
@@ -29,7 +29,7 @@ export const isUndefined = (val: unknown): val is undefined => typeof val === 'u
 export const isNull = (val: unknown): val is null => val === null
 
 // check has data
-export const hasData = <T>(val: T): val is T => {
+export const hasData = (val: any): boolean => {
   if (isString(val))
     return val.length > 0
   if (isNumeric(val))
@@ -37,9 +37,9 @@ export const hasData = <T>(val: T): val is T => {
   if (isBool(val))
     return true
   if (isObject(val))
-    return true
-  if (isArray(val))
-    return val.length > 0
+    return Object.keys(val).length > 0
+  if (Array.isArray(val))
+    return (val as any[]).length > 0
   if (isFunction(val))
     return true
   if (isSymbol(val))
