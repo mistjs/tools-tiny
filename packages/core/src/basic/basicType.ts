@@ -156,3 +156,141 @@ export const isCreditCard = (val: unknown): boolean => {
     return logiccheckcode === checkcode
   }
 }
+
+// check is bank card
+export const isBankCard = (val: unknown): boolean => {
+  if (!isString(val)) return false
+  const lastNum = val.substring(val.length - 1, 1)
+  const first15Num = val.substring(0, val.length - 1)
+  const newArr = []
+  for (let i = first15Num.length - 1; i > -1; i--)
+    newArr.push(first15Num.substring(i, 1))
+
+  const arrJiShu = []
+  const arrJiShu2 = []
+  const arrOuShu = []
+  for (let j = 0; j < newArr.length; j++) {
+    if ((j + 1) % 2 === 1) {
+      if (parseInt(newArr[j]) * 2 < 9)
+        arrJiShu.push(parseInt(newArr[j]) * 2)
+      else
+        arrJiShu2.push(parseInt(newArr[j]) * 2)
+    }
+    else {
+      arrOuShu.push(newArr[j])
+    }
+  }
+  const jishuChild1 = []
+  const jishuChild2 = []
+  for (let h = 0; h < arrJiShu.length; h++) {
+    jishuChild1.push(arrJiShu[h] % 10)
+    jishuChild2.push(Math.floor(arrJiShu[h] / 10))
+  }
+  let sumJiShu = 0
+  let sumOuShu = 0
+  let sumJiShuChild1 = 0
+  let sumJiShuChild2 = 0
+  let sumTotal = 0
+  for (let m = 0; m < arrJiShu.length; m++)
+    sumJiShu += arrJiShu[m]
+
+  for (let n = 0; n < arrOuShu.length; n++)
+    sumOuShu += parseInt(arrOuShu[n])
+
+  for (let p = 0; p < jishuChild1.length; p++) {
+    sumJiShuChild1 += jishuChild1[p]
+    sumJiShuChild2 += jishuChild2[p]
+  }
+  sumTotal = sumJiShu + sumOuShu + sumJiShuChild1 + sumJiShuChild2
+  const k = sumTotal % 10 === 0 ? 10 : sumTotal % 10
+  const luhm = 10 - k
+  return lastNum === luhm.toString()
+}
+
+// check is id card
+export const isIdCard = (val: unknown, gender?: 0| 1 | undefined): boolean => {
+  if (!isString(val)) return false
+  const checker = () => {
+    const factorArr = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]
+    const parityBit = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
+    const varArray: (string | number)[] = []
+    let lngProduct = 0
+    let intCheckDigit
+    const intStrLen = val.length
+    const idNumber = val
+    // initialize
+    if ((intStrLen !== 15) && (intStrLen !== 18))
+      return false
+
+    // check and set value
+    for (let i = 0; i < intStrLen; i++) {
+      varArray[i] = idNumber.charAt(i)
+      if ((varArray[i] < '0' || varArray[i] > '9') && (i !== 17))
+        return false
+      else if (i < 17)
+        varArray[i] = Number(varArray[i]) * factorArr[i]
+    }
+
+    if (intStrLen === 18) {
+      // check date
+      const date8 = idNumber.substring(6, 14)
+
+      if (!/^[0-9]{8}$/.test(date8))
+        return false
+
+      const year = Number(date8.substring(0, 4))
+      const month = Number(date8.substring(4, 6))
+      const day = Number(date8.substring(6, 8))
+      const iaMonthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      if (year < 1700 || year > 2500) return false
+      if (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)) iaMonthDays[1] = 29
+      if (month < 1 || month > 12) return false
+      if (day < 1 || day > iaMonthDays[month - 1]) return false
+
+      // calculate the sum of the products
+      for (let i = 0; i < 17; i++)
+        lngProduct = lngProduct + Number(varArray[i])
+
+      // calculate the check digit
+      intCheckDigit = parityBit[lngProduct % 11]
+      // check last digit
+      if (varArray[17] !== intCheckDigit)
+        return false
+    }
+    // length is 15
+    else {
+      // check date
+      const date6 = idNumber.substring(6, 12)
+
+      if (!/^[0-9]{6}$/.test(date6))
+        return false
+
+      const year = Number(date6.substring(0, 2))
+      const month = Number(date6.substring(2, 4))
+      const day = Number(date6.substring(4, 6))
+      if (!/^\d{2}$/.test(String(year))) return false
+      if (month < 1 || month > 12) return false
+      if (day < 1 || day > 31) return false
+    }
+    return true
+  }
+  if (val && checker()) {
+    if (gender === 0 || gender === 1) {
+      let sexStr
+      let tmp = 0
+      if (val.length === 15)
+        tmp = Number(val.substring(val.length - 1, val.length))
+      else if (val.length === 18)
+        tmp = Number(val.substring(val.length - 2, 1))
+
+      if (tmp % 2 === 0)
+        sexStr = 0
+      else
+        sexStr = 1
+
+      if (gender !== sexStr) return false
+    }
+    return true
+  }
+  return false
+}
