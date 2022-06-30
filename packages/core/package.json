@@ -1,6 +1,6 @@
 {
-  "name": "tools-tiny",
-  "version": "0.0.1-beta.2",
+  "name": "@tools-tiny/core",
+  "version": "0.0.0",
   "description": "Tiny Tool is a tool library that helps us develop quickly",
   "keywords": [
     "lodash",
@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "eslint": "^8.18.0",
     "tsup": "^6.1.2",
     "typescript": "^4.7.4",
     "vitest": "^0.16.0"
