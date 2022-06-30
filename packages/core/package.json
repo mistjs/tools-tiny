@@ -1,0 +1,41 @@
+{
+  "name": "tools-tiny",
+  "version": "0.0.1-beta.2",
+  "description": "Tiny Tool is a tool library that helps us develop quickly",
+  "keywords": [
+    "lodash",
+    "lodash-mini"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "author": "aibayanyu",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:u": "vitest -u"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "eslint": "^8.18.0",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4",
+    "vitest": "^0.16.0"
+  }
+}
