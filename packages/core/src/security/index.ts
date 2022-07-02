@@ -1,1 +1,1 @@
-
+export { getUuid } from './uuid'

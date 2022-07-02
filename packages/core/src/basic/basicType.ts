@@ -16,6 +16,33 @@ export const isObject = <T>(val: T): val is T => Object.prototype.toString.call(
 // check is Array
 export const isArray = (val: any): val is any[] => Array.isArray(val) && Object.prototype.toString.call(val) === '[object Array]'
 
+// check is RegExp
+export const isRegExp = (val: unknown): val is RegExp => Object.prototype.toString.call(val) === '[object RegExp]'
+
+// check is File
+export const isFile = (val: unknown): val is File => Object.prototype.toString.call(val) === '[object File]'
+
+// check is FormData
+export const isFormData = (val: unknown): val is FormData => Object.prototype.toString.call(val) === '[object FormData]'
+
+// check is Blob
+export const isBlob = (val: unknown): val is Blob => Object.prototype.toString.call(val) === '[object Blob]'
+
+// check is Date
+export const isDate = (val: unknown): val is Date => Object.prototype.toString.call(val) === '[object Date]'
+
+// check is Map
+export const isMap = (val: unknown): val is Map<any, any> => Object.prototype.toString.call(val) === '[object Map]'
+
+// check is WeakMap
+export const isWeakMap = (val: unknown): val is WeakMap<any, any> => Object.prototype.toString.call(val) === '[object WeakMap]'
+
+// check is Set
+export const isSet = (val: unknown): val is Set<any> => Object.prototype.toString.call(val) === '[object Set]'
+
+// check is WeakSet
+export const isWeakSet = (val: unknown): val is WeakSet<any> => Object.prototype.toString.call(val) === '[object WeakSet]'
+
 // check is basic Symbol
 export const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
 
