@@ -10,10 +10,10 @@
   },
   "devDependencies": {
     "@mistjs/eslint-config": "^0.0.2",
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.8.4",
     "bumpp": "^8.2.1",
     "conventional-changelog-cli": "^2.2.2",
-    "eslint": "^8.18.0",
-    "typescript": "^4.7.4"
+    "eslint": "^8.25.0",
+    "typescript": "^4.8.4"
   }
 }
