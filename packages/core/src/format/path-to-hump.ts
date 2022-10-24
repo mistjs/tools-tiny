@@ -1,6 +1,6 @@
 export const normalizePath = (path: string): string => {
   let myPath = path.replace(/\/\//, '/')
-  myPath = path.replace(/\\/, '/')
+  myPath = myPath.replace(/\\/, '/')
   return myPath
 }
 

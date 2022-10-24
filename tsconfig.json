@@ -1,25 +1,3 @@
 {
-    "compilerOptions": {
-        "target": "es2017",
-        "module": "esnext",
-        "outDir": "dist",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "declaration": true,
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "newLine": "LF",
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "strictBindCallApply": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "stripInternal": true,
-        "skipLibCheck": true
-    },
-    "exclude": [
-        "node_modules"
-    ]
+    "extends": "@mistjs/tsconfig"
 }
